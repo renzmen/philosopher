@@ -32,7 +32,7 @@ void	print(char *str, t_philo *philo)
 	if (philo->data->exit == 1)
 	{
 		pthread_mutex_unlock(&philo->data->write);
-		//return ;
+		return ;
 	}
 	printf("%s%lu %d %s%s\n", color, time, philo->id, str, RESET);
 	pthread_mutex_unlock(&philo->data->write);
@@ -67,8 +67,6 @@ void	*monitor(void *data_pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *) data_pointer;
-	// pthread_mutex_lock(&philo->data->write);
-	// pthread_mutex_unlock(&philo->data->write);
 	while (philo->data->exit == 0)
 	{
 		pthread_mutex_lock(&philo->data->lock);

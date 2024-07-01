@@ -6,7 +6,7 @@
 #    By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 15:05:20 by lorenzo           #+#    #+#              #
-#    Updated: 2024/04/16 15:26:11 by lorenzo          ###   ########.fr        #
+#    Updated: 2024/07/01 18:04:03 by lorenzo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ OBJS		= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBRARIES	= -lpthread
 
 all: $(NAME)
+
+$(shell mkdir -p $(OBJ_DIR))
 
 $(NAME):  $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INCLUDES) $(LIBRARIES)
