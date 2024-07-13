@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:59:37 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/13 14:10:50 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/13 23:50:46 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,22 @@ void	ft_free(t_data *data)
 	free(data->philo);
 }
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	while (*s1 != '\0' && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
-}
-
-int	is_in_strings(char c, char *str)
-{
-	while (*str)
-	{
-		if (*str == c)
-			return (1);
-		str++;
-	}
-	return (0);
-}
+// int	ft_strcmp(char *s1, char *s2)
+// {
+// 	while (*s1 != '\0' && (*s1 == *s2))
+// 	{
+// 		s1++;
+// 		s2++;
+// 	}
+// 	return (*(char *)s1 - *(char *)s2);
+// }
 
 long	ft_atol(const char *str)
 {
 	int		sign;
 	long	result;
 
-	while (is_in_strings(*(char *) str, "\t\n\v\f\r "))
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
 	sign = 1;
 	if (*str == '-')

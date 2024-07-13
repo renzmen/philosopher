@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:02:47 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/13 22:50:06 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/13 23:51:03 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_philo
 
 int			main(int argc, char **argv);
 int			error(char *msg, t_data *data);
-int			is_in_strings(char c, char *str);
 long		ft_atol(const char *str);
 int			input_check(char **argv);
 void		init_data(t_data *data, char **argv, int argc);
@@ -77,7 +76,6 @@ void		init(t_data *data, char **argv, int argc);
 u_int64_t	get_time(void);
 int			ft_usleep(u_int64_t time);
 void		ft_free(t_data *data);
-int			ft_strcmp(char *s1, char *s2);
 
 void		print(char *str, t_philo *philo);
 void		eat(t_philo *philo);
