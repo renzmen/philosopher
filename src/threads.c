@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 08:31:29 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/01 17:04:24 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/13 15:51:51 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_thread(t_data *data)
 
 	i = 0;
 	data->start_time = get_time();
-	if (data->n_meals > 0)
+	if (data->n_meals > 0 && data->n_philo > 1)
 	{
 		if (pthread_create(&t_meals, NULL, &monitor, &data->philo[0]))
 			return (error("threads error", data));
@@ -32,10 +32,20 @@ int	init_thread(t_data *data)
 		i++;
 	}
 	i = 0;
-	while (i < data->n_philo)
+	if (data->n_philo == 1)
 	{
-		if (pthread_join(data->tid[i++], NULL))
-			return (error("join threads error", data));
+		if (pthread_detach(data->tid[0]))
+			return (error("detach threads error", data));
+		while (data->exit == 0)
+			ft_usleep(0);
+	}
+	else
+	{
+		while (i < data->n_philo)
+		{
+			if (pthread_join(data->tid[i++], NULL))
+				return (error("join threads error", data));
+		}
 	}
 	return (0);
 }

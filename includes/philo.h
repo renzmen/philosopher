@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:02:47 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/01 12:42:59 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/13 22:50:06 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define TAKER	"has taken right fork"
-# define TAKEL	"has taken left fork"
+# define TAKER	"has taken a fork"
+# define TAKEL	"has taken a fork"
 # define EAT	"is eating"
 # define SLEEP	"is sleeping"
 # define THINK	"is thinking"

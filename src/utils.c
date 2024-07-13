@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:59:37 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/04/15 23:06:23 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/13 14:10:50 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ void	ft_free(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 		pthread_mutex_destroy(&data->forks[i++]);
+	free(data->forks);
 	pthread_mutex_destroy(&data->write);
 	pthread_mutex_destroy(&data->lock);
-	if (data->tid)
-		free(data->tid);
-	if (data->forks)
-		free(data->forks);
-	if (data->philo)
-		free(data->philo);
+	free(data->tid);
+	free(data->philo);
 }
 
 int	ft_strcmp(char *s1, char *s2)
