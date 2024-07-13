@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 08:31:29 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/13 15:51:51 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/13 23:36:15 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ int	init_thread(t_data *data)
 	{
 		if (pthread_create(&data->tid[i], NULL, &routine, &data->philo[i]))
 			return (error("threads error", data));
-		ft_usleep(1);
+		if (data->n_philo == 1)
+		{
+			if (pthread_detach(data->tid[0]))
+				return (error("detach threads error", data));
+			while (data->exit == 0)
+				ft_usleep(0);
+		}
+		else
+			ft_usleep(1);	
 		i++;
 	}
 	i = 0;
-	if (data->n_philo == 1)
-	{
-		if (pthread_detach(data->tid[0]))
-			return (error("detach threads error", data));
-		while (data->exit == 0)
-			ft_usleep(0);
-	}
-	else
+	if (data->n_philo > 1)
 	{
 		while (i < data->n_philo)
 		{
