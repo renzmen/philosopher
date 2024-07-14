@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:19:38 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/04/15 23:04:19 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:20:44 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	input_check(char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			
 			if ((argv[i][j] < 48 || argv[i][j] > 57))
 				return (error("Invalid argument", NULL));
 			j++;
@@ -64,7 +63,6 @@ void	init_data(t_data *data, char **argv, int argc)
 	alloc(data);
 	while (i < data->n_philo)
 	{
-		
 		data->philo[i].data = data;
 		data->philo[i].id = i + 1;
 		data->philo[i].time_to_die = data->death_time;

@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:11:41 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/13 22:50:54 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:29:16 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print(char *str, t_philo *philo)
 {
 	u_int64_t	time;
-	char	*color;
+	char		*color;
 
 	pthread_mutex_lock(&philo->data->write);
 	time = get_time() - philo->data->start_time;
@@ -37,9 +37,9 @@ void	print(char *str, t_philo *philo)
 void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
-	print(TAKEL, philo);
+	print(TAKE, philo);
 	pthread_mutex_lock(philo->r_fork);
-	print(TAKER, philo);
+	print(TAKE, philo);
 	pthread_mutex_lock(&philo->data->lock);
 	philo->eating = 1;
 	philo->time_to_die = get_time() + philo->data->death_time;
@@ -52,7 +52,6 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->lock);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-	//print(DROP, philo);
 }
 
 void	*monitor(void *data_pointer)
@@ -77,17 +76,19 @@ void	*supervisor(void *philo_ptr)
 	while (philo->data->exit == 0)
 	{
 		pthread_mutex_lock(&philo->data->lock);
-		if (get_time() >= philo->time_to_die && philo->eating == 0 && philo->data->exit == 0)
+		if (get_time() >= philo->time_to_die && philo->eating == 0)
 		{
 			philo->data->exit = 1;
 			print(DIED, philo);
 		}
-		else if (philo->eat_cont == philo->data->n_meals)
+		pthread_mutex_unlock(&philo->data->lock);
+		if (philo->eat_cont == philo->data->n_meals)
 		{
+			pthread_mutex_lock(&philo->data->lock);
 			philo->data->satiated++;
 			philo->eat_cont++;
+			pthread_mutex_unlock(&philo->data->lock);
 		}
-		pthread_mutex_unlock(&philo->data->lock);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:02:47 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/13 23:51:03 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:30:07 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define TAKER	"has taken a fork"
-# define TAKEL	"has taken a fork"
+# define TAKE	"has taken a fork"
 # define EAT	"is eating"
 # define SLEEP	"is sleeping"
 # define THINK	"is thinking"
 # define DIED	"died"
-# define DROP	"dropped forks"
 
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
@@ -79,6 +77,7 @@ void		ft_free(t_data *data);
 
 void		print(char *str, t_philo *philo);
 void		eat(t_philo *philo);
+void		*one_philo(void *data_ptr);
 void		*monitor(void *data_pointer);
 void		*supervisor(void *philo_ptr);
 void		*routine(void *philo_pointer);

@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:59:37 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/13 23:50:46 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:19:09 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	error(char *msg, t_data *data)
 {
 	printf("Error: %s\n", msg);
-	ft_free(data);
+	if (data)
+		ft_free(data);
 	return (1);
 }
 
@@ -37,6 +38,7 @@ int	ft_usleep(u_int64_t time)
 		usleep(time / 10);
 	return (0);
 }
+
 void	ft_free(t_data *data)
 {
 	int	i;
@@ -50,16 +52,6 @@ void	ft_free(t_data *data)
 	free(data->tid);
 	free(data->philo);
 }
-
-// int	ft_strcmp(char *s1, char *s2)
-// {
-// 	while (*s1 != '\0' && (*s1 == *s2))
-// 	{
-// 		s1++;
-// 		s2++;
-// 	}
-// 	return (*(char *)s1 - *(char *)s2);
-// }
 
 long	ft_atol(const char *str)
 {
