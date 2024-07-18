@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 08:31:29 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/14 16:25:03 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/17 18:03:53 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	init_thread(t_data *data)
 	i = 0;
 	data->start_time = get_time();
 	if (data->n_meals > 0)
-		pthread_create(&t_meals, NULL, &monitor, &data->philo[0]);
+		pthread_create(&t_meals, NULL, &control_meals, &data->philo[0]);
 	while (i < data->n_philo)
 	{
 		pthread_create(&data->tid[i], NULL, &routine, &data->philo[i]);

@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:11:41 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/14 16:29:16 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/17 18:02:42 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 }
 
-void	*monitor(void *data_pointer)
+void	*control_meals(void *data_pointer)
 {
 	t_philo	*philo;
 
@@ -68,7 +68,7 @@ void	*monitor(void *data_pointer)
 	}
 }
 
-void	*supervisor(void *philo_ptr)
+void	*death(void *philo_ptr)
 {
 	t_philo	*philo;
 
@@ -98,7 +98,7 @@ void	*routine(void *philo_pointer)
 
 	philo = (t_philo *) philo_pointer;
 	philo->time_to_die = philo->data->death_time + get_time();
-	if (pthread_create(&philo->t, NULL, &supervisor, (void *)philo))
+	if (pthread_create(&philo->t, NULL, &death, (void *)philo))
 		return ((void *)1);
 	while (philo->data->exit == 0)
 	{

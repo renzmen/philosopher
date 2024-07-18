@@ -6,7 +6,7 @@
 /*   By: lorenzo <lorenzo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:02:47 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/07/14 16:30:07 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/07/17 18:03:00 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void		ft_free(t_data *data);
 void		print(char *str, t_philo *philo);
 void		eat(t_philo *philo);
 void		*one_philo(void *data_ptr);
-void		*monitor(void *data_pointer);
-void		*supervisor(void *philo_ptr);
+void		*control_meals(void *data_pointer);
+void		*death(void *philo_ptr);
 void		*routine(void *philo_pointer);
 
 #endif
